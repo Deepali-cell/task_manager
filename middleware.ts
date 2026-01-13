@@ -12,16 +12,13 @@ export async function middleware(req: NextRequest) {
   //  If user is NOT logged in & tries to access protected routes
   if (
     !token &&
-    (pathname.startsWith("/profile") || pathname.startsWith("/addtask"))
+    (pathname.startsWith("/profile") || pathname.startsWith("/addTask"))
   ) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
   // If user IS logged in & tries to access login/register
-  if (
-    token &&
-    (pathname.startsWith("/login") || pathname.startsWith("/register"))
-  ) {
+  if (token && pathname.startsWith("/login")) {
     return NextResponse.redirect(new URL("/profile", req.url));
   }
 
@@ -41,5 +38,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/addtask/:path*", "/login"],
+  matcher: ["/profile/:path*", "/addTask/:path*", "/login"],
 };
