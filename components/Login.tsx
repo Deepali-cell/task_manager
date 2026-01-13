@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const navigate = useRouter();
+  const router = useRouter();
 
   const { setUser } = useAuth();
   const {
@@ -24,7 +24,8 @@ const Login = () => {
       const { data } = await axios.post(`/api/auth/login`, sendingData);
       if (data.success) {
         setUser(data.user);
-        navigate.push("/");
+        router.refresh();
+        router.push("/addTask");
         toast("You are login successfully");
       } else {
         toast(data.message);
