@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const { data } = await axios.get("/api/taskList");
       if (data.success) setTasks(data.tasks);
-      else toast(data.message);
+      else console.log("task list is empty may be");
     } catch (error) {
       console.error("Error fetching task list", error);
       toast("Error fetching task list");
