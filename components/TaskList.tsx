@@ -16,7 +16,7 @@ const priorityColors: Record<string, string> = {
 
 const TaskList = () => {
   const { tasks, fetchTaskList } = useAuth();
-  const [editingTask, setEditingTask] = useState<Task | null>(null); // selected task for modal
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
 
   const deleteTask = async (id: string) => {
     try {

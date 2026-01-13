@@ -1,18 +1,16 @@
-import "server-only";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import prisma from "@/lib/prisma";
+import { NextResponse } from "next/server";
 
-export async function getUserFromCookie() {
-  "use server";
+export const runtime = "nodejs";
 
-  const cookieStore = cookies();
+export async function GET() {
+  const token = (await cookies()).get("taskmanager_usertoken")?.value;
 
-  const tokenCookie = (await cookieStore).get("taskmanager_usertoken");
-
-  if (!tokenCookie) return null;
-
-  const token = tokenCookie.value;
+  if (!token) {
+    return NextResponse.json({ user: null });
+  }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
@@ -29,9 +27,8 @@ export async function getUserFromCookie() {
       },
     });
 
-    return { user, token };
-  } catch (err) {
-    console.log(err);
-    return null;
+    return NextResponse.json({ user });
+  } catch {
+    return NextResponse.json({ user: null });
   }
 }

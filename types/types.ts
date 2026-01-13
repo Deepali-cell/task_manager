@@ -42,4 +42,5 @@ export interface AuthContextType {
   tasks: Task[];
   setTasks: (tasks: Task[]) => void;
   fetchTaskList: () => Promise<void>;
+  loading: boolean;
 }
