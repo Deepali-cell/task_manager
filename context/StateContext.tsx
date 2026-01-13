@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       else console.log("task list is empty may be");
     } catch (error) {
       console.error("Error fetching task list", error);
-      toast("Error fetching task list");
     }
   };
 
