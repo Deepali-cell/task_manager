@@ -12,7 +12,7 @@ export async function middleware(req: NextRequest) {
   //  If user is NOT logged in & tries to access protected routes
   if (
     !token &&
-    (pathname.startsWith("/profile") || pathname.startsWith("/addTask"))
+    (pathname.startsWith("/profile") || pathname.startsWith("/addtask"))
   ) {
     return NextResponse.redirect(new URL("/login", req.url));
   }

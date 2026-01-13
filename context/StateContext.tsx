@@ -8,7 +8,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { toast } from "react-toastify";
+
 import { User, Task, AuthContextType } from "@/types/types";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
